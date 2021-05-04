@@ -15,7 +15,7 @@ public class SPIEL
      */
     public SPIEL()
     {
-        // Instanzvariable initialisieren
+        // hallo ich bin kathi
         x = 0;
     }
 
