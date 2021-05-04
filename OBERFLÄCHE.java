@@ -7,5 +7,5 @@
  */
 public class OBERFLÄCHE
 {
-    //hier kommt was rein
+    //hier kommt was rein ne
 }
