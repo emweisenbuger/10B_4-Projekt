@@ -19,19 +19,22 @@ class OBERFLAECHE
     private static final int breiteFenster = rasterGroesse * 26;
     private static OBERFLAECHE o = null;
     private JFrame fenster = null;
-
-    /**
-     * Baut die Bedienoberfläche auf
-     */
+    private FIGUR Blau1;
+    private FIGUR Blau2;
+    
     private OBERFLAECHE ()
     {
-        fenster = new JFrame ("Zeichenfläche");
+           fenster = new JFrame ("Zeichenfläche");
+        fenster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fenster. setResizable (false);
         fenster. setVisible (true);
         fenster. setLayout (null);
+        //---------------hier legen wir einen spieler an
+        Blau1= new FIGUR(40,40);
+        Blau2= new FIGUR(20,20);
         fenster. getContentPane (). setBackground (new Color (240, 240, 240));
         Insets i = fenster.getInsets();
-        fenster. setSize (breiteFenster, hoeheFenster + i.top);         // Ausgleich für Fenstertitel
+        fenster. setSize (breiteFenster, hoeheFenster + i.top);
         JComponent hintergrund = new JComponent ()
         {
              /**
@@ -53,13 +56,21 @@ class OBERFLAECHE
                 g. setColor (Color. black);
                 g. drawLine (0, hoeheFenster / 2, breiteFenster - 1, hoeheFenster / 2);
                 g. drawLine (breiteFenster / 2, 0, breiteFenster / 2, hoeheFenster - 1);
+                Blau1.draw (g);
+                Blau2.draw (g);
             }
         };
         hintergrund. setVisible (true);
         hintergrund. setSize (breiteFenster, hoeheFenster);
         hintergrund. setLocation (0, 0);
         fenster. add (hintergrund);
+        
     }
+         
+        
+    
+    
+   
 
     /**
      * Gibt das Ausgabefenster zurück und erzeugt es gegebenenfalls.
