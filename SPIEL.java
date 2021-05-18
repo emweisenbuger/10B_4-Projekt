@@ -1,33 +1,33 @@
 
 /**
- * Beschreiben Sie hier die Klasse SPIEL.
+ * Zusammensetzung des Spielbretts
  * 
  * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
+ * @version1_18.05.21
  */
+
+import java. awt.*;
+import javax.swing.*; 
+
 public class SPIEL
 {
-    // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
-    private int x;
+    // 
+    FLIESE [] ffliese;
+    ImageIcon feld;
 
     /**
      * Konstruktor für Objekte der Klasse SPIEL
      */
     public SPIEL()
     {
-        // hallo ich bin kathi
-        x = 0;
+        // erster Versuch mit sieben Fliesen
+         ffliese= new FLIESE[7];
+         feld = new ImageIcon ("bird.jpg");
+         
+         for (int i= 0; i < ffliese.length; i++)
+         {
+             ffliese [i] = new FLIESE ();
+         }
     }
 
-    /**
-     * Ein Beispiel einer Methode - ersetzen Sie diesen Kommentar mit Ihrem eigenen
-     * 
-     * @param  y    ein Beispielparameter für eine Methode
-     * @return        die Summe aus x und y
-     */
-    public int beispielMethode(int y)
-    {
-        // tragen Sie hier den Code ein
-        return x + y;
-    }
 }
