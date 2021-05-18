@@ -6,12 +6,12 @@ import javax. swing. *;
 /**
  * Verwaltet das Ausgabefenster.
  * 
- * @author Albert Wiedemann
- * @version 1.0
+ * @author 
+ * @version2_18.05.21
  */
 class OBERFLAECHE
 {
-    /** Anzeigegröße für eine Rasterkachel */
+    /** Anzeigegröße für eine Kachel */
     private static final int rasterGroesse = 40;
     /** Höhe des Anzeigefensters */
     private static final int hoeheFenster = rasterGroesse * 20;
