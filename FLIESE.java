@@ -16,7 +16,7 @@ class FLIESE
     private JFrame fenster;
     
     /** Anzeigegröße für das Rumpfelement */
-    private static final int groesse = OBERFLAECHE. RasterGroesseGeben ();
+    private static final int groesse = OBERFLAECHE.RasterGroesseGeben ();
 
     /** Interna */
     private int x;
