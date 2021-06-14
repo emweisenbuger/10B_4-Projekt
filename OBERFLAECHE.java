@@ -4,55 +4,33 @@
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.*;
+import java.awt.geom.*;
+import java.awt.event.*;
+import java.util.*;
 
-public class OBERFLAECHE implements KeyListener
+public class OBERFLAECHE 
 {
-    JFrame f;
+    private JFrame fenster;
+    private JComponent malfläche;
     ImageIcon spielfeld;
     JLabel l;
     int x,y;
+    private static OBERFLAECHE zeichenfläche = null;
+    
     
     OBERFLAECHE()
     {
         x = 0;
         y = 0;
-        f = new JFrame();
-        f.setVisible(true);
-        f.setSize(700,700);
-        f.addKeyListener(this);
-        spielfeld = new ImageIcon ("spielfeld.jpg");        
+        fenster = new JFrame();
+        fenster.setVisible(true);
+        fenster.setSize(700,700);
+        //*spielfeld = new ImageIcon ("spielfeld.jpg");        
         l = new JLabel (spielfeld);
         l.setLocation(x,y);
-        f.add(l);
-        
+        fenster.add(l);
+      
     }
-    
-    public void keyReleased(KeyEvent ke)
-    {
-    }
-    
-    public void keyTyped(KeyEvent ke)
-    {
-    }
-    
-    public void keyPressed(KeyEvent ke) 
-    {
-        switch (ke.getKeyChar())
-        {
-          case 'w':
-            y = y - 10;
-            break;
-          case 's':
-            y = y + 10;
-            break;
-          case 'a':
-            x = x - 10;
-            break;
-          case 'd':
-            x = x + 10;
-            break;
-        }
-        l.setLocation(x,y);
-    }
-}
+}   
 

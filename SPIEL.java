@@ -7,13 +7,15 @@
  */
 
 import java. awt.*;
-import javax.swing.*; 
+import java.awt.geom.*;
+import java.awt.event.*;
+import javax.swing.*;
+import java.util.*;
 
 public class SPIEL
 {
     // 
-    FLIESE [] ffliese;
-    ImageIcon feld;
+    
 
     /**
      * Konstruktor für Objekte der Klasse SPIEL
@@ -21,13 +23,7 @@ public class SPIEL
     public SPIEL()
     {
         // erster Versuch mit sieben Fliesen
-         ffliese= new FLIESE[7];
-         feld = new ImageIcon ("bird.jpg");
-         
-         for (int i= 0; i < ffliese.length; i++)
-         {
-             ffliese [i] = new FLIESE ();
-         }
+        
     }
 
 }

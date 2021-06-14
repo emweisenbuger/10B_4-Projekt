@@ -1,104 +1,87 @@
-
-/**
- * Das Symbol der Fliesen.
- *
- * @emweisenburger / @kathischmid
- * @version1_04.05.2021
- */
-
-
 import java.awt.*;
-import javax. swing. *;
-
+import java.awt.geom.*;
+import java.awt.event.*;
+import javax.swing.*;
+import java.util.*;
+/**
+ * Wrapperklasse für ein Rechteck auf der Zeichenfläche.
+ * 
+ * @author Albert Wiedemann 
+ * @version 1.0
+ */
 class FLIESE
 {
-    /** Das Anzeigefenster. */
-    private JFrame fenster;
-    
-    /** Anzeigegröße für das Rumpfelement */
-    private static final int groesse = OBERFLAECHE.RasterGroesseGeben ();
-
-    /** Interna */
+    /** x-Position der linken oberen Ecke. */
     private int x;
+    /** y-Position der linken oberen Ecke. */
     private int y;
-    private JComponent anzeige;
+    /** Breite des Rechtecks. */
+    private int breite;
+    /** Höhe des Rechtecks. */
+    private int höhe;
+    /** Farbe des Rechtecks. */
+    private String farbe;
+    /** Sichtbarkeit des Rechtecks. */
+    private boolean sichtbar;
+    /** Drehwinkel des Rechtecks in Grad. */
+    private int winkel;
+    /** Referenz auf das Delegate-Objekt. */
+    private Object symbol;
 
     /**
-     * Standardkonstruktor für Objekte der Klasse KASSENSYMBOL.
-     * Er erzeugt ein scharzes Rechteck in der linken oberen Ecke des Fensters.
-     * Das Fenster wird bei Bedarf angelegt.
+     * Der Konstruktor erzeugt das Delegate-Objekt
      */
-    FLIESE()
+    FLIESE ()
     {
-        fenster = OBERFLAECHE. FensterGeben ();
-        anzeige = new JComponent () 
-        {
-            // Stellt das Rumpfelement auf dem Fenster dar.
-            public void paintComponent (Graphics g)
-            {
-                g. clearRect (0, 0, groesse, groesse);
-                g. setColor (Color. yellow);
-                g. fillRect (0, 0, groesse - 1, groesse - 1);
-                g. setColor (new Color (50, 200, 0));
-                g. drawRect (0, 0, groesse - 1, groesse - 1);
-                g. drawRect (1, 1, groesse - 3, groesse - 3);
-                
-            }
-
-        };
-        anzeige. setVisible (true);
-        anzeige. setSize (groesse, groesse);
-        fenster. add (anzeige, 0);
-        PositionSetzen (0, 0);
+        x = 10;
+        y = 10;
+        breite = 100;
+        höhe = 100;
+        farbe = "rot";
+        sichtbar = true;
+        winkel = 0;
+        symbol = SPIEL.SymbolErzeugen(OBERFLAECHE.SymbolArt.rechteck);
+        OBERFLAECHE.PositionSetzen(symbol, x, y);
+        OBERFLAECHE.GrößeSetzen(symbol, breite, höhe);
+        OBERFLAECHE.FarbeSetzen(symbol, farbe);
     }
-
+    
     /**
-     * Setzt die Farbe
+     * Setzt die Position (der linken oberen Ecke) des Rechtecks.
+     * @param x x-Position der linken oberen Ecke
+     * @param y y-Position der linken oberen Ecke
      */
-    void FarbeSetzen ()
+    void PositionSetzen(int x, int y)
     {
+        this.x = x;
+        this.y = y;
+        OBERFLAECHE .PositionSetzen(symbol, x, y);
+    }
         
+    /**
+     * Setzt die Größe des Rechtecks.
+     * @param breite (neue) Breite
+     * @param hoehe (neue) Höhe
+     */
+    void GroesseSetzen (int breite, int hoehe)
+    {
+        this.breite = breite;
+        this.höhe = hoehe;
+        OBERFLAECHE .GrößeSetzen(symbol, breite, höhe);
     }
     
-    
     /**
-     * Setzt die Position des Rumpfelements. Der Ursprung liegt in der Mitte des
-     * Fensters, die y-Achse zeigt nach unten. (x /y) bedeutet das
-     * K&auml;stchen rechts unterhalb der Gitterlinien.
-     * @param x x-Position
-     * @param y y-Position
+     * Setzt die Farbe des Rechtecks.
+     * Erlaubte Farben sind:
+     * "weiß", "weiss", "rot", "grün", "gruen", "blau", "gelb",
+     * "magenta", "cyan", "hellgelb", "hellgrün", "hellgruen",
+     * "orange", "braun", "grau", "schwarz"
+     * Alle anderen Eingaben werden auf die Farbe schwarz abgebildet.
+     * @param farbe (neue) Farbe
      */
-    public void PositionSetzen (int x, int y)
+    void FarbeSetzen (String farbe)
     {
-        this. x = x;
-        this. y = y;
-        anzeige. setLocation (OBERFLAECHE. FensterBreiteGeben () / 2 + x * groesse, OBERFLAECHE. FensterHoeheGeben () / 2 + y * groesse);
-    }
-
-    /**
-     * Gibt den X-Wert der Position des Kopfelements.
-     * @return x-Position
-     */
-    int XPositionGeben ()
-    {
-        return x;
-    }
-
-    /**
-     * Gibt den Y-Wert der Position des Kopfelements.
-     * @return y-Position
-     */
-    int YPositionGeben ()
-    {
-        return y;
-    }
-
-    /**
-     * Entfernt die Figur aus der Anzeige
-     */
-    public void Entfernen ()
-    {
-        (OBERFLAECHE. FensterGeben ()). remove (anzeige);
-        (OBERFLAECHE. FensterGeben ()). repaint();
+        this.farbe = farbe;
+        OBERFLAECHE .FarbeSetzen(symbol, farbe);
     }
 }
