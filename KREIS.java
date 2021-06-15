@@ -2,7 +2,7 @@
 /**
  * Wrapperklasse für einen Kreis auf der Zeichenfläche.
  * 
- * @author Albert Wiedemann 
+ * @author 
  * @version 1.0
  */
 class KREIS
@@ -29,8 +29,8 @@ class KREIS
     {
         x = 60;
         y = 60;
-        radius = 50;
-        farbe = "rot";
+        radius = 30;
+        farbe = "gelb";
         sichtbar = true;
         winkel = 0;
         symbol = ZEICHENFLAECHE.SymbolErzeugen(ZEICHENFLAECHE.SymbolArt.kreis);
@@ -46,7 +46,7 @@ class KREIS
      * @param x x-Position des Mittelpunkts
      * @param y y-Position des Mittelpunkts
      */
-    void MittelpunktSetzen(int x, int y)
+    public void MittelpunktSetzen(int x, int y)
     {
         this.x = x;
         this.y = y;
