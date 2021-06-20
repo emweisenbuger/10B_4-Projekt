@@ -5,7 +5,7 @@
  * @author 
  * @version 1.0
  */
-class KREIS
+ public class KREIS
 {
     /** x-Position des Kreismittelpunktes. */
     private int x;
@@ -29,7 +29,7 @@ class KREIS
     {
         x = 60;
         y = 60;
-        radius = 30;
+        radius = 20;
         farbe = "gelb";
         sichtbar = true;
         winkel = 0;
@@ -132,5 +132,15 @@ class KREIS
     void GanzNachHintenBringen ()
     {
         ZEICHENFLAECHE.GanzNachHintenBringen(symbol);
+    }
+    
+    public int XPositionGeben ()
+    {
+        return x;
+    }
+    
+    public int YPositionGeben ()
+    {
+        return y;
     }
 }
