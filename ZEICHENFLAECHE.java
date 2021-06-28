@@ -10,7 +10,7 @@ import java.util.*;
 class ZEICHENFLAECHE
 {
     /** Aufzählung der erzeugbaren Objektarten. */
-    static enum SymbolArt {kreis, dreieck, rechteck;};
+    static enum SymbolArt {kreis, kreisrand, dreieck, rechteck;};
     
     /** Einziges Objekt der Zeichenfläche. */
     private static ZEICHENFLAECHE zeichenfläche = null;
@@ -436,6 +436,28 @@ class ZEICHENFLAECHE
             if (winkel == 0)
             {
                 g.fillOval(x, y, b, h);
+            }
+            else
+            {
+                Graphics2D g2 = (Graphics2D) g;
+                AffineTransform alt = g2.getTransform();
+                g2.rotate(Math.PI * winkel / 180.0, x + b / 2, y + h / 2);
+                g.fillOval(x, y, b, h);
+                g2.setTransform(alt);
+            }
+        }
+        /**
+         * Zeichnet das Objekt als Ellipse in der gegebenen Farbe.
+         * @param g das Grafikobjekt zum Zeichnen
+         */
+        void Zeichnen(Graphics g,Color clinie)
+        {
+            g.setColor(c);
+            if (winkel == 0)
+            {
+                g.fillOval(x, y, b, h);
+                g.setColor(clinie);
+                g.drawOval(x,y,b,h);
             }
             else
             {

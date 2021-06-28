@@ -1,23 +1,25 @@
 
 /**
- * Wrapperklasse für einen Kreis auf der Zeichenfläche.
+ * Wrapperklasse für ein Rechteck auf der Zeichenfläche.
  * 
- * @author 
+ * @author Albert Wiedemann 
  * @version 1.0
  */
- public class KREIS
+class RECHTECK
 {
-    /** x-Position des Kreismittelpunktes. */
+    /** x-Position der linken oberen Ecke. */
     private int x;
-    /** y-Position des Kreismittelpunktes. */
+    /** y-Position der linken oberen Ecke. */
     private int y;
-    /** Radius des Kreises. */
-    private int radius;
-    /** Farbe des Kreises. */
+    /** Breite des Rechtecks. */
+    private int breite;
+    /** Höhe des Rechtecks. */
+    private int höhe;
+    /** Farbe des Rechtecks. */
     private String farbe;
-    /** Sichtbarkeit des Kreises. */
+    /** Sichtbarkeit des Rechtecks. */
     private boolean sichtbar;
-    /** Drehwinkel des Kreises in Grad. */
+    /** Drehwinkel des Rechtecks in Grad. */
     private int winkel;
     /** Referenz auf das Delegate-Objekt. */
     private Object symbol;
@@ -25,47 +27,49 @@
     /**
      * Der Konstruktor erzeugt das Delegate-Objekt
      */
-    KREIS ()
+    RECHTECK ()
     {
-        x = 60;
-        y = 60;
-        radius = 20;
-        farbe = "gelb";
+        x = 10;
+        y = 10;
+        breite = 100;
+        höhe = 100;
+        farbe = "rot";
         sichtbar = true;
         winkel = 0;
-        symbol = ZEICHENFLAECHE.SymbolErzeugen(ZEICHENFLAECHE.SymbolArt.kreis);
-        ZEICHENFLAECHE.PositionSetzen(symbol, x - radius, y - radius);
-        ZEICHENFLAECHE.GrößeSetzen(symbol, radius * 2, radius * 2);
+        symbol = ZEICHENFLAECHE.SymbolErzeugen(ZEICHENFLAECHE.SymbolArt.rechteck);
+        ZEICHENFLAECHE.PositionSetzen(symbol, x, y);
+        ZEICHENFLAECHE.GrößeSetzen(symbol, breite, höhe);
         ZEICHENFLAECHE.FarbeSetzen(symbol, farbe);
         ZEICHENFLAECHE.SichtbarkeitSetzen(symbol, sichtbar);
         ZEICHENFLAECHE.WinkelSetzen(symbol, winkel);
     }
     
     /**
-     * Setzt die Position (des Mittelpunkts) des Kreises.
-     * @param x x-Position des Mittelpunkts
-     * @param y y-Position des Mittelpunkts
+     * Setzt die Position (der linken oberen Ecke) des Rechtecks.
+     * @param x x-Position der linken oberen Ecke
+     * @param y y-Position der linken oberen Ecke
      */
-    public void MittelpunktSetzen(int x, int y)
+    void PositionSetzen(int x, int y)
     {
         this.x = x;
         this.y = y;
-        ZEICHENFLAECHE.PositionSetzen(symbol, x - radius, y - radius);
+        ZEICHENFLAECHE.PositionSetzen(symbol, x, y);
     }
         
     /**
-     * Setzt den Radius des Kreises.
-     * @param radius (neuer) Radius
+     * Setzt die Größe des Rechtecks.
+     * @param breite (neue) Breite
+     * @param hoehe (neue) Höhe
      */
-    void RadiusSetzen (int radius)
+    void GroesseSetzen (int breite, int hoehe)
     {
-        this.radius = radius;
-        ZEICHENFLAECHE.GrößeSetzen(symbol, radius * 2, radius * 2);
-        ZEICHENFLAECHE.PositionSetzen(symbol, x - radius, y - radius);
+        this.breite = breite;
+        this.höhe = hoehe;
+        ZEICHENFLAECHE.GrößeSetzen(symbol, breite, höhe);
     }
     
     /**
-     * Setzt die Farbe des Kreises.
+     * Setzt die Farbe des Rechtecks.
      * Erlaubte Farben sind:
      * "weiß", "weiss", "rot", "grün", "gruen", "blau", "gelb",
      * "magenta", "cyan", "hellgelb", "hellgrün", "hellgruen",
@@ -80,10 +84,10 @@
     }
         
     /**
-     * Setzt den Drehwinkel des Kreises.
+     * Setzt den Drehwinkel des Rechtecks.
      * Die Winkelangabe ist in Grad,positive Werte drehen im Uhrzeigersinn,
      * negative Werte drehen gegen den Uhrzeigersinn.
-     * @param winkel der (neue) Drehwinkel des Kreises
+     * @param winkel der (neue) Drehwinkel des Rechtecks
      */
     void WinkelSetzen (int winkel)
     {
@@ -92,9 +96,9 @@
     }
     
     /**
-     * Schaltet die Sichtbarkeit des Kreises ein oder aus.
+     * Schaltet die Sichtbarkeit des Rechtecks ein oder aus.
      * Erlaubte Parameterwerte: true, false
-     * @param sichtbar (neue) Sichtbarkeit des Kreises
+     * @param sichtbar (neue) Sichtbarkeit des Rechtecks
      */
     void SichtbarkeitSetzen (boolean sichtbar)
     {
@@ -103,7 +107,7 @@
     }
     
     /**
-     * Bringt den Kreis eine Ebene nach vorn.
+     * Bringt das Rechteck eine Ebene nach vorn.
      */
     void NachVornBringen ()
     {
@@ -111,7 +115,7 @@
     }
     
     /**
-     * Bringt den Kreis in die vorderste Ebene.
+     * Bringt das Rechteck in die vorderste Ebene.
      */
     void GanzNachVornBringen ()
     {
@@ -119,7 +123,7 @@
     }
     
     /**
-     * Bringt den Kreis eine Ebene nach hinten.
+     * Bringt das Rechteck eine Ebene nach hinten.
      */
     void NachHintenBringen ()
     {
@@ -127,20 +131,11 @@
     }
     
     /**
-     * Bringt den Kreis in die hinterste Ebene.
+     * Bringt das Rechteck in die hinterste Ebene.
      */
     void GanzNachHintenBringen ()
     {
         ZEICHENFLAECHE.GanzNachHintenBringen(symbol);
     }
-    
-    public int XPositionGeben ()
-    {
-        return x;
-    }
-    
-    public int YPositionGeben ()
-    {
-        return y;
-    }
 }
+
