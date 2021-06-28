@@ -40,23 +40,10 @@ public class SPIEL extends EREIGNISSE
    String farbe;
    
    // Spielfiguren:
-   FIGUR Blau1;
-   FIGUR Blau2;
-   FIGUR Blau3;
-   FIGUR Blau4;
-  /* FIGUR Rot1;
-   FIGUR Rot2;
-   FIGUR Rot3;
-   FIGUR Rot4;*/
+   FIGUR [] Blau;
    FIGUR [] Rot;
-   FIGUR Gelb1;
-   FIGUR Gelb2;
-   FIGUR Gelb3;
-   FIGUR Gelb4;
-   FIGUR Gruen1;
-   FIGUR Gruen2;
-   FIGUR Gruen3;
-   FIGUR Gruen4;
+   FIGUR [] Gelb;
+   FIGUR [] Gruen;
    
    int SpielerAnDerReihe;
    int SpielerInHausR;
@@ -124,49 +111,34 @@ public class SPIEL extends EREIGNISSE
     
     // Bereich für Instanzierung der Spielfiguren
     
-    // BLAU
-    Blau1 = new FIGUR("blau");
-    Blau1.PositionSetzen(Spielfeld[61]);
-    Blau2 = new FIGUR("blau");
-    Blau2.PositionSetzen(Spielfeld[62]);
-    Blau3 = new FIGUR("blau");
-    Blau3.PositionSetzen(200+0*60,120+10*60);
-    Blau4 = new FIGUR("blau");
-    Blau4.PositionSetzen(200+1*60,120+10*60);
-    // GELB
-    Gelb1 = new FIGUR("gelb");
-    Gelb1.PositionSetzen(200+9*60,120+9*60);
-    Gelb2 = new FIGUR("gelb");
-    Gelb2.PositionSetzen(200+10*60,120+9*60);
-    Gelb3 = new FIGUR("gelb");
-    Gelb3.PositionSetzen(200+9*60,120+10*60);
-    Gelb4 = new FIGUR("gelb");
-    Gelb4.PositionSetzen(200+10*60,120+10*60);
-    // GRUEN
-    Gruen1 = new FIGUR("gruen");
-    Gruen1.PositionSetzen(200+9*60,120+0*60);
-    Gruen2 = new FIGUR("gruen");
-    Gruen2.PositionSetzen(200+10*60,120+0*60);
-    Gruen3 = new FIGUR("gruen");
-    Gruen3.PositionSetzen(200+9*60,120+1*60);
-    Gruen4 = new FIGUR("gruen");
-    Gruen4.PositionSetzen(200+10*60,120+1*60);
-    /* ROT
-    Rot1 = new FIGUR("rot");
-    Rot1.PositionSetzen(200+0*60,120+0*60);
-    Rot2 = new FIGUR("rot");
-    Rot2.PositionSetzen(200+1*60,120+0*60);
-    Rot3 = new FIGUR("rot");
-    Rot3.PositionSetzen(200+0*60,120+1*60);
-    Rot4 = new FIGUR("rot");
-    Rot4.PositionSetzen(200+1*60,120+1*60);
-    */
+    Blau = new FIGUR[4];
+   for (int i = 0; i <= 3; i++)
+   {
+      Blau[i] = new FIGUR("blau");
+      Blau[i].PositionSetzen(Spielfeld[61+i]);
+    }
+    
+      Gelb = new FIGUR[4];
+   for (int i = 0; i <= 3; i++)
+   {
+      Gelb[i] = new FIGUR("gelb");
+      Gelb[i].PositionSetzen(Spielfeld[51+i]);
+    }
+   
+    Gruen = new FIGUR[4];
+   for (int i = 0; i <= 3; i++)
+   {
+       Gruen[i] = new FIGUR("grün");
+      Gruen[i].PositionSetzen(Spielfeld[41+i]);
+    }
+    
    Rot = new FIGUR[4];
    for (int i = 0; i <= 3; i++)
    {
        Rot[i] = new FIGUR("rot");
        Rot[i].PositionSetzen(Spielfeld[71+i]);
     }
+    
     // Spieler an der Reihe: Rot = 1; Grün = 2; Blau = 3; Gelb = 4;
     SpielerAnDerReihe = 1;
     SpielerInHausR = 4;
@@ -187,10 +159,10 @@ public class SPIEL extends EREIGNISSE
            spielzug();
         
         }
-        else if(welche == 1) {selectedSpieler = 1;}
+        /*else if(welche == 1) {selectedSpieler = 1;}
         else if(welche == 2) {selectedSpieler = 2;}
         else if(welche == 3) {selectedSpieler = 3;}
-        else if(welche == 4) {selectedSpieler = 4;}
+        else if(welche == 4) {selectedSpieler = 4;}*/
         
  }  
  void spielzug()
@@ -201,8 +173,8 @@ public class SPIEL extends EREIGNISSE
         if(SpielerInHausR > 0 && augenzahl == 6 && Spielfeld[33].besetzt() != "rot")
         {
             if(SpielerInHausR == 1) {Rot[0].PositionSetzen(Spielfeld[33]); SpielerInHausR--;Spielfeld[33].besetzen("rot");}
-            if(SpielerInHausR == 2) {Rot[1].PositionSetzen(200+0*60,120+4*60); SpielerInHausR--;Spielfeld[33].besetzen("rot");}
-            if(SpielerInHausR == 3) {Rot[2].PositionSetzen(200+0*60,120+4*60); SpielerInHausR--;Spielfeld[33].besetzen("rot");}
+            if(SpielerInHausR == 2) {Rot[1].PositionSetzen(Spielfeld[33]); SpielerInHausR--;Spielfeld[33].besetzen("rot");}
+            if(SpielerInHausR == 3) {Rot[2].PositionSetzen(Spielfeld[33]); SpielerInHausR--;Spielfeld[33].besetzen("rot");}
             if(SpielerInHausR == 4) {Rot[3].PositionSetzen(Spielfeld[33]); SpielerInHausR--;Spielfeld[33].besetzen("rot");}
         }
         else
@@ -216,8 +188,8 @@ public class SPIEL extends EREIGNISSE
             }
             Spielfeld[feld_vor_zug].besetzen("schwarz");
             Rot[3].PositionSetzen(Spielfeld[finales_feld_nach_zug]); 
-    }  
-} 
+       }  
+    } 
        
        
     }
