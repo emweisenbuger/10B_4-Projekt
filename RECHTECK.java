@@ -138,4 +138,3 @@ class RECHTECK
         ZEICHENFLAECHE.GanzNachHintenBringen(symbol);
     }
 }
-
